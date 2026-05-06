@@ -2,11 +2,11 @@ import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/b
 import { useWindowDimensions } from "react-native";
 
 import { tabItemConfigs } from "@/app/navigation/accessConfig";
+import { CreditsTabStackScreen } from "@/app/navigation/stacks/CreditsTabStackScreen";
 import { MainTabsParamList } from "@/app/navigation/types";
 import { useSession } from "@/features/auth/context/SessionContext";
 import { hasAccess } from "@/features/auth/utils/access";
 import { DailyCollectionsScreen } from "@/features/collections/screens/DailyCollectionsScreen";
-import { NewCreditScreen } from "@/features/credits/screens/NewCreditScreen";
 import { CustomersScreen } from "@/features/customers/screens/CustomersScreen";
 import { PaymentsScreen } from "@/features/payments/screens/PaymentsScreen";
 import { BottomTabBar } from "@/shared/ui/navigation/BottomTabBar";
@@ -46,7 +46,7 @@ function getTabComponent(routeName: keyof MainTabsParamList) {
     case "DailyCollections":
       return DailyCollectionsScreen;
     case "NewCredit":
-      return NewCreditScreen;
+      return CreditsTabStackScreen;
     case "Payments":
       return PaymentsScreen;
     case "Customers":

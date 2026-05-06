@@ -9,18 +9,32 @@ type CreateCreditFormValues = {
   customerId: string;
   routeId: string;
   creditAmount: string;
+  installmentAmount: string;
   interestRate: string;
   periodicityDays: string;
   term: string;
   startDate: string;
+  tagIds: string;
 };
 
-export function useCreateCreditForm(onSuccess?: () => void) {
+type UseCreateCreditFormOptions = {
+  onSuccess?: () => void;
+  onSubmitOverride?: (payload: CreateCreditPayload) => Promise<void> | void;
+};
+
+export function useCreateCreditForm({
+  onSuccess,
+  onSubmitOverride
+}: UseCreateCreditFormOptions = {}) {
   const { profile } = useSession();
   const queryClient = useQueryClient();
 
-  const createCreditMutation = useMutation({
+  const submitCreditMutation = useMutation({
     mutationFn: async (payload: CreateCreditPayload) => {
+      if (onSubmitOverride) {
+        return onSubmitOverride(payload);
+      }
+
       if (!profile?.token) {
         throw new Error("No hay sesion activa.");
       }
@@ -45,29 +59,37 @@ export function useCreateCreditForm(onSuccess?: () => void) {
       customerId: "",
       routeId: "",
       creditAmount: "",
+      installmentAmount: "",
       interestRate: "",
       periodicityDays: "1",
       term: "",
-      startDate: today
+      startDate: today,
+      tagIds: ""
     } satisfies CreateCreditFormValues,
     onSubmit: async ({ value }) => {
       const payload: CreateCreditPayload = {
         customerId: value.customerId,
         routeId: value.routeId,
         creditAmount: Number(value.creditAmount),
+        installmentAmount: Number(value.installmentAmount),
         interestRate: Number(value.interestRate),
         periodicityDays: Number(value.periodicityDays),
         term: Number(value.term),
         startDate: new Date(value.startDate).toISOString(),
-        tagIds: null
+        tagIds: value.tagIds.trim()
+          ? value.tagIds
+              .split(",")
+              .map((item) => item.trim())
+              .filter(Boolean)
+          : null
       };
 
-      await createCreditMutation.mutateAsync(payload);
+      await submitCreditMutation.mutateAsync(payload);
     }
   });
 
   return {
     form,
-    createCreditMutation
+    submitCreditMutation
   };
 }
