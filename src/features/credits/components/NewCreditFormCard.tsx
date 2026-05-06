@@ -30,8 +30,10 @@ export function NewCreditFormCard({
   selectedRoute,
   hasActiveCredit
 }: NewCreditFormCardProps): React.JSX.Element {
-  const { form, createCreditMutation } = useCreateCreditForm(() => {
-    form.reset();
+  const { form, submitCreditMutation } = useCreateCreditForm({
+    onSuccess: () => {
+      form.reset();
+    }
   });
 
   const isBlocked = !selectedCustomer || !selectedRoute || hasActiveCredit;
@@ -127,20 +129,20 @@ export function NewCreditFormCard({
         </Text>
       ) : null}
 
-      {createCreditMutation.isError ? (
+      {submitCreditMutation.isError ? (
         <Text style={styles.errorText}>
           No fue posible crear el credito. Verifica los datos o revisa la regla de negocio en backend.
         </Text>
       ) : null}
 
-      {createCreditMutation.isSuccess ? (
+      {submitCreditMutation.isSuccess ? (
         <Text style={styles.successText}>Credito creado correctamente.</Text>
       ) : null}
 
       <PrimaryButton
         label="Guardar credito"
         disabled={isBlocked}
-        isLoading={createCreditMutation.isPending}
+        isLoading={submitCreditMutation.isPending}
         onPress={() => {
           startTransition(() => {
             form.setFieldValue("customerId", selectedCustomer?.id ?? "");

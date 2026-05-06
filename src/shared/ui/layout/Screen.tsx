@@ -1,7 +1,17 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  useWindowDimensions,
+  View
+} from "react-native";
 
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
@@ -16,6 +26,7 @@ type ScreenProps = PropsWithChildren<{
   rightSlot?: ReactNode;
   scrollable?: boolean;
   showAppHeader?: boolean;
+  titleStyle?: StyleProp<TextStyle>;
 }>;
 
 export function Screen({
@@ -24,6 +35,7 @@ export function Screen({
   rightSlot,
   scrollable = true,
   showAppHeader = true,
+  titleStyle,
   children
 }: ScreenProps): React.JSX.Element {
   const navigation = useNavigation();
@@ -61,7 +73,7 @@ export function Screen({
 
       <View style={styles.header}>
         <View style={styles.headerText}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.title, titleStyle]}>{title}</Text>
           {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
         </View>
         {!shouldShowMobileAppHeader ? rightSlot : null}

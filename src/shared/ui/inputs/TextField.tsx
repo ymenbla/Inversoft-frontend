@@ -8,11 +8,13 @@ import { typography } from "@/shared/theme/typography";
 type TextFieldProps = TextInputProps & {
   label: string;
   error?: string;
+  prefix?: string;
 };
 
 export function TextField({
   label,
   error,
+  prefix,
   ...props
 }: TextFieldProps): React.JSX.Element {
   const isRequired = label.endsWith("*");
@@ -24,11 +26,14 @@ export function TextField({
         {baseLabel}
         {isRequired ? <Text style={styles.requiredMark}> *</Text> : null}
       </Text>
-      <TextInput
-        placeholderTextColor={colors.textMuted}
-        style={[styles.input, error ? styles.inputError : null]}
-        {...props}
-      />
+      <View style={[styles.inputShell, error ? styles.inputShellError : null]}>
+        {prefix ? <Text style={styles.prefix}>{prefix}</Text> : null}
+        <TextInput
+          placeholderTextColor={colors.textMuted}
+          style={[styles.input, prefix ? styles.inputWithPrefix : null]}
+          {...props}
+        />
+      </View>
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
@@ -48,17 +53,31 @@ const styles = StyleSheet.create({
   requiredMark: {
     color: colors.danger
   },
-  input: {
+  inputShell: {
     minHeight: 52,
+    flexDirection: "row",
+    alignItems: "center",
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
-    paddingHorizontal: spacing.lg,
+    paddingHorizontal: spacing.lg
+  },
+  inputShellError: {
+    borderColor: colors.danger
+  },
+  prefix: {
+    color: colors.textMuted,
+    fontSize: typography.body,
+    fontWeight: "700"
+  },
+  input: {
+    flex: 1,
+    minHeight: 50,
     color: colors.text
   },
-  inputError: {
-    borderColor: colors.danger
+  inputWithPrefix: {
+    paddingLeft: spacing.sm
   },
   error: {
     color: colors.danger,
