@@ -7,7 +7,7 @@ import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type CreditDetailContentProps = {
   creditId: string | null;
@@ -196,12 +196,12 @@ const styles = StyleSheet.create({
   customerName: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   creditMeta: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   heroCard: {
     padding: spacing.lg,
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   heroTitle: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   statusBadge: {
     paddingHorizontal: spacing.md,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: typography.caption,
-    fontWeight: "800",
+    ...fontWeights.extrabold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   metricValue: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   metricValueActive: {
     color: colors.primaryStrong
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
   metricLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   detailCard: {
     padding: spacing.lg,
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   detailRow: {
     gap: spacing.xs
@@ -308,14 +308,14 @@ const styles = StyleSheet.create({
   detailLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.5
   },
   detailValue: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   actionsBlock: {
     gap: spacing.md

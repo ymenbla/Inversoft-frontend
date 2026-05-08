@@ -8,7 +8,7 @@ import { hasAccess } from "@/features/auth/utils/access";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type DrawerContentProps = DrawerContentComponentProps & {
   isCollapsed: boolean;
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   brandBadgeText: {
     color: colors.primaryStrong,
     fontSize: typography.heading,
-    fontWeight: "900"
+    ...fontWeights.extrabold
   },
   brandTextBlock: {
     flex: 1,
@@ -187,18 +187,19 @@ const styles = StyleSheet.create({
   companyLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.8
   },
   userName: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   role: {
     color: colors.textMuted,
-    fontSize: typography.body
+    fontSize: typography.body,
+    ...fontWeights.regular
   },
   divider: {
     height: 1,
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   itemLabelActive: {
     color: colors.surface

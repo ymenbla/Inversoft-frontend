@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type FilterFormCardProps = PropsWithChildren<{
   description?: string;
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
   description: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   },
   clearButton: {
     alignSelf: "flex-end",
@@ -78,6 +79,6 @@ const styles = StyleSheet.create({
   clearLabel: {
     color: colors.primary,
     fontSize: typography.caption,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   }
 });

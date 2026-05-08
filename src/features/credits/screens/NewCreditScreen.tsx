@@ -1,13 +1,28 @@
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { CreateCreditCard } from "@/features/credits/components/CreateCreditCard";
-import { Screen } from "@/shared/ui/layout/Screen";
+import { FullScreenModal } from "@/shared/ui/layout/FullScreenModal";
 
 export function NewCreditScreen(): React.JSX.Element {
+  const navigation = useNavigation();
+  const [submitTrigger, setSubmitTrigger] = useState(0);
+
   return (
-    <Screen
+    <FullScreenModal
+      visible
       title="Nuevo credito"
-      subtitle="Completa la informacion del credito y genera el payload de creacion."
+      actionLabel="Guardar"
+      actionAccessibilityLabel="Guardar credito"
+      onActionPress={() => setSubmitTrigger((current) => current + 1)}
+      onClose={() => navigation.goBack()}
     >
-      <CreateCreditCard />
-    </Screen>
+      <CreateCreditCard
+        showActions={false}
+        submitTrigger={submitTrigger}
+        onCancel={() => navigation.goBack()}
+        onCreated={() => navigation.goBack()}
+      />
+    </FullScreenModal>
   );
 }

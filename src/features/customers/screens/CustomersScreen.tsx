@@ -31,7 +31,7 @@ import { EmptyState } from "@/shared/ui/feedback/EmptyState";
 import { LoadingBlock } from "@/shared/ui/feedback/LoadingBlock";
 import { colors } from "@/shared/theme/colors";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 const USE_MOCK_CUSTOMERS = true;
 const MOBILE_BREAKPOINT = 768;
@@ -740,7 +740,7 @@ const styles = StyleSheet.create({
   quickFilterChipText: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   quickFilterChipTextActive: {
     color: colors.surface
@@ -774,12 +774,12 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   fetchingLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   headerActionButton: {
     minHeight: 42,
@@ -800,7 +800,7 @@ const styles = StyleSheet.create({
   headerActionLabel: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   headerActionLabelActive: {
     color: colors.surface
@@ -808,7 +808,7 @@ const styles = StyleSheet.create({
   confirmDeleteText: {
     color: colors.danger,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   paginationCard: {
     padding: spacing.md,
@@ -824,11 +824,12 @@ const styles = StyleSheet.create({
   paginationTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   paginationMeta: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   paginationActions: {
     flexDirection: "row",

@@ -17,7 +17,7 @@ import { FullScreenModal } from "@/shared/ui/layout/FullScreenModal";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 const quickFilterOptions = [
   { label: "Todos", value: "" },
@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   quickFilterChipText: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   quickFilterChipTextActive: {
     color: colors.surface
@@ -564,7 +564,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: 20,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   headerActionButton: {
     minHeight: 42,
@@ -581,7 +581,7 @@ const styles = StyleSheet.create({
   headerActionLabel: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   sortCard: {
     flexDirection: "row",
@@ -591,7 +591,7 @@ const styles = StyleSheet.create({
   sortLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.5
   },
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   sortDropdown: {
     marginTop: -spacing.sm,
@@ -638,7 +638,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   sortDropdownItemTextActive: {
     color: colors.primaryStrong
@@ -657,11 +657,12 @@ const styles = StyleSheet.create({
   paginationTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   paginationMeta: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   paginationActions: {
     flexDirection: "row",

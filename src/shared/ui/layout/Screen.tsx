@@ -16,7 +16,7 @@ import {
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
   wordmarkPrimary: {
     color: colors.text,
     fontSize: 24,
-    fontWeight: "900",
+    ...fontWeights.extrabold,
     letterSpacing: -0.8
   },
   wordmarkSecondary: {
     color: colors.primary,
     fontSize: 24,
-    fontWeight: "900",
+    ...fontWeights.extrabold,
     letterSpacing: -0.8
   },
   header: {
@@ -151,11 +151,12 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text,
     fontSize: typography.title,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   subtitle: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   }
 });

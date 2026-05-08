@@ -13,14 +13,14 @@ import Animated, {
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights } from "@/shared/theme/typography";
 
 type TabIconName = keyof typeof Ionicons.glyphMap;
 
 const tabIcons: Record<string, TabIconName> = {
   Menu: "menu",
-  DailyCollections: "calendar",
-  NewCredit: "card",
+  DailyCollections: "albums",
+  NewCredit: "wallet",
   Payments: "cash",
   Customers: "people"
 };
@@ -43,15 +43,20 @@ function TabItem({
   }, [active, progress]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: interpolate(progress.value, [0, 1], [0, -4]) }],
-    backgroundColor: active ? colors.primary : colors.surface
+    transform: [{ translateY: interpolate(progress.value, [0, 1], [0, -2]) }]
+  }));
+
+  const indicatorStyle = useAnimatedStyle(() => ({
+    opacity: progress.value,
+    transform: [{ scaleX: interpolate(progress.value, [0, 1], [0.4, 1]) }]
   }));
 
   return (
     <Pressable onPress={onPress} style={styles.tabPressable}>
       <Animated.View style={[styles.tabItem, animatedStyle]}>
+        <Animated.View style={[styles.activeIndicator, indicatorStyle]} />
         <Ionicons
-          color={active ? colors.surface : colors.textMuted}
+          color={active ? colors.primary : colors.textMuted}
           name={iconName}
           size={18}
           style={styles.tabIcon}
@@ -62,43 +67,73 @@ function TabItem({
   );
 }
 
+function CenterActionButton({ onPress }: { onPress: () => void }): React.JSX.Element {
+  return (
+    <View style={styles.centerActionSlot}>
+      <Pressable onPress={onPress} style={styles.centerActionPressable}>
+        <View style={styles.centerActionButton}>
+          <Ionicons color={colors.surface} name="add" size={28} />
+        </View>
+      </Pressable>
+    </View>
+  );
+}
+
 export function BottomTabBar({
   state,
   descriptors,
   navigation
 }: BottomTabBarProps): React.JSX.Element {
+  const orderedRoutes = [...state.routes].sort((left, right) => {
+    const routeOrder = ["Customers", "NewCredit", "DailyCollections", "Payments"];
+
+    return routeOrder.indexOf(left.name) - routeOrder.indexOf(right.name);
+  });
+  const leftRoutes = orderedRoutes.slice(0, 2);
+  const rightRoutes = orderedRoutes.slice(2);
+
+  const handleCreateCreditPress = () => {
+    navigation.navigate("NewCredit", { screen: "CreditCreate" });
+  };
+
+  const renderTabItem = (route: (typeof orderedRoutes)[number]) => {
+    const routeIndex = state.routes.findIndex((item) => item.key === route.key);
+    const isFocused = state.index === routeIndex;
+    const onPress = () => {
+      if (route.name === "Menu") {
+        navigation.getParent()?.dispatch(DrawerActions.openDrawer());
+        return;
+      }
+
+      const event = navigation.emit({
+        type: "tabPress",
+        target: route.key,
+        canPreventDefault: true
+      });
+
+      if (!isFocused && !event.defaultPrevented) {
+        navigation.navigate(route.name);
+      }
+    };
+
+    return (
+      <View key={route.key} style={styles.tabSlot}>
+        <TabItem
+          active={isFocused}
+          iconName={tabIcons[route.name] ?? "ellipse"}
+          label={descriptors[route.key]?.options.title ?? route.name}
+          onPress={onPress}
+        />
+      </View>
+    );
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        {state.routes.map((route, index) => {
-          const isFocused = state.index === index;
-          const onPress = () => {
-            if (route.name === "Menu") {
-              navigation.getParent()?.dispatch(DrawerActions.openDrawer());
-              return;
-            }
-
-            const event = navigation.emit({
-              type: "tabPress",
-              target: route.key,
-              canPreventDefault: true
-            });
-
-            if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
-            }
-          };
-
-          return (
-            <TabItem
-              key={route.key}
-              active={isFocused}
-              iconName={tabIcons[route.name] ?? "ellipse"}
-              label={descriptors[route.key]?.options.title ?? route.name}
-              onPress={onPress}
-            />
-          );
-        })}
+        {leftRoutes.map(renderTabItem)}
+        <CenterActionButton onPress={handleCreateCreditPress} />
+        {rightRoutes.map(renderTabItem)}
       </View>
     </View>
   );
@@ -115,12 +150,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: spacing.sm,
+    paddingHorizontal: spacing.sm,
+    paddingTop: spacing.sm,
+    paddingBottom: spacing.md,
     borderRadius: radius.xl,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    boxShadow: "0px 10px 24px rgba(11, 20, 37, 0.08)"
+    boxShadow: "0px 10px 24px rgba(11, 20, 37, 0.08)",
+    overflow: "visible"
+  },
+  tabSlot: {
+    flex: 1
   },
   tabPressable: {
     flex: 1
@@ -132,7 +173,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: spacing.sm,
-    gap: 4
+    gap: 4,
+    backgroundColor: colors.surface
+  },
+  activeIndicator: {
+    position: "absolute",
+    top: 0,
+    left: spacing.md,
+    right: spacing.md,
+    height: 3,
+    borderBottomLeftRadius: radius.pill,
+    borderBottomRightRadius: radius.pill,
+    backgroundColor: colors.primary
   },
   tabIcon: {
     marginBottom: 1
@@ -140,9 +192,29 @@ const styles = StyleSheet.create({
   tabLabel: {
     color: colors.textMuted,
     fontSize: 11,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   tabLabelActive: {
-    color: colors.surface
+    color: colors.primary
+  },
+  centerActionSlot: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  centerActionPressable: {
+    marginTop: -36,
+    borderRadius: 999
+  },
+  centerActionButton: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+    borderWidth: 4,
+    borderColor: colors.surface,
+    boxShadow: "0px 12px 24px rgba(11, 20, 37, 0.16)"
   }
 });

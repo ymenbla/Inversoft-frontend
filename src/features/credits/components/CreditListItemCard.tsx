@@ -5,7 +5,7 @@ import { CreditListItem } from "@/features/credits/types/credit.types";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type CreditListItemCardProps = {
   credit: CreditListItem;
@@ -215,12 +215,12 @@ const styles = StyleSheet.create({
   customerName: {
     color: colors.text,
     fontSize: 17,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   idText: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   metaDot: {
     width: 4,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   badge: {
     paddingHorizontal: spacing.md,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   statusLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "800",
+    ...fontWeights.extrabold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -271,12 +271,12 @@ const styles = StyleSheet.create({
   metricLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   metricText: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   metricTextActiveBalance: {
     color: colors.primaryStrong
@@ -314,12 +314,12 @@ const styles = StyleSheet.create({
   footerLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   footerValue: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   chevronButton: {
     width: 28,
@@ -352,7 +352,7 @@ const styles = StyleSheet.create({
   actionLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   actionLabelDanger: {
     color: colors.danger

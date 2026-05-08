@@ -12,7 +12,7 @@ import { colombiaCities, colombiaDepartments } from "@/shared/data/colombiaLocat
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { AutocompleteField } from "@/shared/ui/inputs/AutocompleteField";
@@ -621,7 +621,8 @@ const styles = StyleSheet.create({
   description: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   },
   editSummaryCard: {
     padding: spacing.md,
@@ -634,12 +635,12 @@ const styles = StyleSheet.create({
   editSummaryName: {
     color: colors.primaryStrong,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   editSummaryMeta: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   section: {
     gap: spacing.md
@@ -647,7 +648,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   sectionCard: {
     padding: spacing.lg,
@@ -664,7 +665,7 @@ const styles = StyleSheet.create({
   radioLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -703,7 +704,7 @@ const styles = StyleSheet.create({
   radioOptionLabel: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   errorText: {
     color: colors.danger,
@@ -711,12 +712,14 @@ const styles = StyleSheet.create({
   },
   helperText: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   mapIntroText: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   },
   locationStatusCard: {
     padding: spacing.md,
@@ -727,17 +730,18 @@ const styles = StyleSheet.create({
   locationStatusTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   locationStatusText: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    lineHeight: 18
+    lineHeight: 18,
+    ...fontWeights.regular
   },
   successText: {
     color: colors.success,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   actions: {
     gap: spacing.md

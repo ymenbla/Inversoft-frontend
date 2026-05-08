@@ -5,7 +5,7 @@ import { CustomerListItem } from "@/features/customers/types/customer.types";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type CustomerListItemCardProps = {
   customer: CustomerListItem;
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   avatarText: {
     color: colors.primaryStrong,
     fontSize: typography.body,
-    fontWeight: "900"
+    ...fontWeights.extrabold
   },
   mainContent: {
     flex: 1,
@@ -163,11 +163,12 @@ const styles = StyleSheet.create({
   name: {
     color: colors.text,
     fontSize: 17,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   idText: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   badge: {
     paddingHorizontal: spacing.md,
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: typography.caption,
-    fontWeight: "800",
+    ...fontWeights.extrabold,
     color: colors.textMuted
   },
   badgeTextSuccess: {
@@ -196,6 +197,7 @@ const styles = StyleSheet.create({
   metaLabel: {
     color: colors.textMuted,
     fontSize: typography.body,
+    ...fontWeights.regular,
     flex: 1
   },
   actionsRow: {
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
   actionLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   actionLabelDanger: {
     color: colors.danger

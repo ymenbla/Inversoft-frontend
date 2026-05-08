@@ -26,8 +26,8 @@ export const drawerItemConfigs: DrawerItemConfig[] = [
 
 export const tabItemConfigs: TabItemConfig[] = [
   { routeName: "Menu", label: "Menu", access: ["admin", "supervisor", "collaborator"] },
-  { routeName: "DailyCollections", label: "Cobros", access: ["admin", "supervisor", "collaborator"] },
-  { routeName: "NewCredit", label: "Credito", access: ["admin", "supervisor", "collaborator"] },
+  { routeName: "Customers", label: "Clientes", access: ["admin", "supervisor", "collaborator"] },
+  { routeName: "NewCredit", label: "Creditos", access: ["admin", "supervisor", "collaborator"] },
   { routeName: "Payments", label: "Pagos", access: ["admin", "supervisor", "collaborator"] },
-  { routeName: "Customers", label: "Clientes", access: ["admin", "supervisor", "collaborator"] }
+  { routeName: "DailyCollections", label: "Cobros", access: ["admin", "supervisor", "collaborator"] }
 ];

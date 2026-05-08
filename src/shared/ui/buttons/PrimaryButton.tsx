@@ -3,7 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type PrimaryButtonProps = {
   label: string;
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
   label: {
     color: colors.surface,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   }
 });

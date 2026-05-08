@@ -6,7 +6,7 @@ import { CustomerDetail } from "@/features/customers/types/customer.types";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   heroCard: {
     padding: spacing.lg,
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   avatarText: {
     color: colors.primaryStrong,
     fontSize: typography.body,
-    fontWeight: "900"
+    ...fontWeights.extrabold
   },
   heroContent: {
     flex: 1,
@@ -229,17 +229,18 @@ const styles = StyleSheet.create({
   name: {
     color: colors.primaryStrong,
     fontSize: 28,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   heroSubtitle: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   heroLocation: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   },
   chipsRow: {
     flexDirection: "row",
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
   statusChipText: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   statusChipTextSuccess: {
     color: colors.success
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   detailsGrid: {
     gap: spacing.md
@@ -298,14 +299,15 @@ const styles = StyleSheet.create({
   detailLabel: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
   detailValue: {
     color: colors.text,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.medium
   },
   actions: {
     gap: spacing.md

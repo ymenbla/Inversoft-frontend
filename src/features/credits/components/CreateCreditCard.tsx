@@ -12,7 +12,7 @@ import { RouteListItem } from "@/features/routes/types/route.types";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { TextField } from "@/shared/ui/inputs/TextField";
@@ -730,7 +730,8 @@ const styles = StyleSheet.create({
   description: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   },
   section: {
     gap: spacing.md
@@ -738,7 +739,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   sectionCard: {
     padding: spacing.lg,
@@ -766,7 +767,7 @@ const styles = StyleSheet.create({
   selectorLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -788,7 +789,8 @@ const styles = StyleSheet.create({
   selectorValue: {
     flex: 1,
     color: colors.text,
-    fontSize: typography.body
+    fontSize: typography.body,
+    ...fontWeights.medium
   },
   selectorPlaceholder: {
     color: colors.textMuted
@@ -823,11 +825,12 @@ const styles = StyleSheet.create({
   selectorOptionTitle: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   selectorOptionSubtitle: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   validationCard: {
     padding: spacing.md,
@@ -840,31 +843,33 @@ const styles = StyleSheet.create({
   validationEyebrow: {
     color: colors.textMuted,
     fontSize: 12,
-    fontWeight: "800",
+    ...fontWeights.extrabold,
     textTransform: "uppercase",
     letterSpacing: 0.8
   },
   validationText: {
     color: colors.textMuted,
     fontSize: typography.caption,
-    lineHeight: 18
+    lineHeight: 18,
+    ...fontWeights.regular
   },
   validationWarning: {
     color: colors.alert,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   validationSuccess: {
     color: colors.success,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   readonlyFieldBlock: {
     gap: spacing.xs
   },
   helperText: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   },
   errorText: {
     color: colors.danger,
@@ -873,7 +878,7 @@ const styles = StyleSheet.create({
   successText: {
     color: colors.success,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   actions: {
     gap: spacing.md

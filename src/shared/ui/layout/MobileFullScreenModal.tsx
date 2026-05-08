@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { colors } from "@/shared/theme/colors";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type MobileFullScreenModalProps = PropsWithChildren<{
   visible: boolean;
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   actionButton: {
     minWidth: 72,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   actionLabel: {
     color: colors.primary,
     fontSize: typography.body,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   },
   actionSpacer: {
     width: 72

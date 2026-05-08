@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, TextInputProps, View } from "react-native"
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type TextFieldProps = TextInputProps & {
   label: string;
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -69,12 +69,13 @@ const styles = StyleSheet.create({
   prefix: {
     color: colors.textMuted,
     fontSize: typography.body,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   input: {
     flex: 1,
     minHeight: 50,
-    color: colors.text
+    color: colors.text,
+    ...fontWeights.medium
   },
   inputWithPrefix: {
     paddingLeft: spacing.sm

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type EmptyStateProps = {
   title: string;
@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   description: {
     color: colors.textMuted,
     fontSize: typography.body,
-    lineHeight: 22
+    lineHeight: 22,
+    ...fontWeights.regular
   }
 });

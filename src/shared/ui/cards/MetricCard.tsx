@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { colors } from "@/shared/theme/colors";
 import { radius } from "@/shared/theme/radius";
 import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { fontWeights, typography } from "@/shared/theme/typography";
 
 type MetricCardProps = {
   label: string;
@@ -47,12 +47,13 @@ const styles = StyleSheet.create({
   label: {
     color: colors.textMuted,
     fontSize: typography.caption,
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
   value: {
     color: colors.text,
     fontSize: typography.heading,
-    fontWeight: "800"
+    ...fontWeights.extrabold
   }
 });
