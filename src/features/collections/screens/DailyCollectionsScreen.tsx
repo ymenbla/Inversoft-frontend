@@ -4,7 +4,7 @@ import { DashboardHeaderActions } from "@/features/dashboard/components/Dashboar
 import { MetricCard } from "@/shared/ui/cards/MetricCard";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
 import { Screen } from "@/shared/ui/layout/Screen";
-import { spacing } from "@/shared/theme/spacing";
+import { spacing } from "@/shared/theme";
 
 export function DailyCollectionsScreen(): React.JSX.Element {
   return (

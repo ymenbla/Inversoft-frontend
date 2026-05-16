@@ -1,7 +1,6 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { spacing } from "@/shared/theme/spacing";
+import { colors, spacing } from "@/shared/theme";
 
 export function LoadingBlock(): React.JSX.Element {
   return (

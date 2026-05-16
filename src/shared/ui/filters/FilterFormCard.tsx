@@ -2,10 +2,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, shadows, spacing, typography } from "@/shared/theme";
 
 type FilterFormCardProps = PropsWithChildren<{
   description?: string;
@@ -47,12 +44,13 @@ export function FilterFormCard({
 
 const styles = StyleSheet.create({
   card: {
-    padding: spacing.md,
-    borderRadius: radius.xl,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.raisedCard
   },
   header: {
     gap: spacing.sm
@@ -65,16 +63,16 @@ const styles = StyleSheet.create({
   },
   clearButton: {
     alignSelf: "flex-end",
-    minHeight: 42,
+    minHeight: componentTokens.chip.height,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xs,
-    paddingHorizontal: spacing.lg,
-    borderRadius: radius.pill,
+    paddingHorizontal: componentTokens.chip.paddingHorizontal,
+    borderRadius: componentTokens.chip.radius,
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: colors.surface
+    backgroundColor: colors.surfaceMuted
   },
   clearLabel: {
     color: colors.primary,

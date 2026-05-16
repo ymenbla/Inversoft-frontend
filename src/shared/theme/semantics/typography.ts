@@ -1,4 +1,4 @@
-import { fontFamilies } from "@/shared/theme/fonts";
+import { fontFamilies } from "@/shared/theme/foundations/fonts";
 
 export const typography = {
   title: 28,

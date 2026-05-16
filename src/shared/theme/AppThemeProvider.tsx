@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
+import { colors } from "@/shared/theme";
 
 export function AppThemeProvider({
   children

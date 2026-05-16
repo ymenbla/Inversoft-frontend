@@ -10,10 +10,7 @@ import Animated, {
   withTiming
 } from "react-native-reanimated";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing } from "@/shared/theme";
 
 type TabIconName = keyof typeof Ionicons.glyphMap;
 
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    boxShadow: "0px 10px 24px rgba(11, 20, 37, 0.08)",
+    ...shadows.floating,
     overflow: "visible"
   },
   tabSlot: {
@@ -167,7 +164,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   tabItem: {
-    minHeight: 58,
+    minHeight: 56,
     marginHorizontal: 2,
     borderRadius: radius.lg,
     alignItems: "center",
@@ -203,18 +200,18 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   centerActionPressable: {
-    marginTop: -36,
+    marginTop: componentTokens.fab.offsetTop,
     borderRadius: 999
   },
   centerActionButton: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
+    width: componentTokens.fab.size,
+    height: componentTokens.fab.size,
+    borderRadius: componentTokens.fab.size / 2,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.primary,
-    borderWidth: 4,
+    borderWidth: componentTokens.fab.ringWidth,
     borderColor: colors.surface,
-    boxShadow: "0px 12px 24px rgba(11, 20, 37, 0.16)"
+    ...shadows.floatingStrong
   }
 });

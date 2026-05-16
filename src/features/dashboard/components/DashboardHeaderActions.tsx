@@ -1,8 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
+import { colors, radius, spacing } from "@/shared/theme";
 
 export function DashboardHeaderActions(): React.JSX.Element {
   return (

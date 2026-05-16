@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import "react-native-reanimated";
 
 import { AppRoot } from "@/app/AppRoot";
-import { configureGlobalTypography, useAppFonts } from "@/shared/theme/fonts";
+import { configureGlobalTypography, useAppFonts } from "@/shared/theme";
 
 configureGlobalTypography();
 

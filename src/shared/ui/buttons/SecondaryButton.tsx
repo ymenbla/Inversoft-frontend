@@ -1,9 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type SecondaryButtonProps = {
   label: string;
@@ -34,14 +31,15 @@ export function SecondaryButton({
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 46,
+    minHeight: componentTokens.button.secondaryHeight,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
-    paddingHorizontal: spacing.lg
+    paddingHorizontal: spacing.lg,
+    ...shadows.card
   },
   buttonDisabled: {
     opacity: 0.55

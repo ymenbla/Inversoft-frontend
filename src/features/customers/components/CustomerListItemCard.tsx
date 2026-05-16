@@ -2,10 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { CustomerListItem } from "@/features/customers/types/customer.types";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type CustomerListItemCardProps = {
   customer: CustomerListItem;
@@ -116,17 +113,19 @@ export function CustomerListItemCard({
 
 const styles = StyleSheet.create({
   card: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-    borderRadius: radius.xl,
+    paddingHorizontal: componentTokens.card.defaultPadding,
+    paddingVertical: componentTokens.card.compactPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.card
   },
   cardSelected: {
     borderColor: colors.primary,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: "#F7FAFF",
+    ...shadows.raisedCard
   },
   row: {
     flexDirection: "row",
@@ -171,12 +170,17 @@ const styles = StyleSheet.create({
     ...fontWeights.regular
   },
   badge: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.pill
+    minHeight: componentTokens.badge.minHeight,
+    paddingHorizontal: componentTokens.badge.paddingHorizontal,
+    paddingVertical: spacing.xs,
+    borderRadius: componentTokens.badge.radius,
+    borderWidth: 1,
+    borderColor: colors.border,
+    justifyContent: "center"
   },
   badgeSuccess: {
-    backgroundColor: "#E7F8F0"
+    backgroundColor: "#E7F8F0",
+    borderColor: "#BEE7D3"
   },
   badgeMuted: {
     backgroundColor: colors.surfaceMuted
@@ -203,10 +207,13 @@ const styles = StyleSheet.create({
   actionsRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: spacing.sm
+    gap: spacing.sm,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border
   },
   actionButton: {
-    minHeight: 34,
+    minHeight: componentTokens.badge.minHeight,
     paddingHorizontal: spacing.md,
     borderRadius: radius.pill,
     borderWidth: 1,

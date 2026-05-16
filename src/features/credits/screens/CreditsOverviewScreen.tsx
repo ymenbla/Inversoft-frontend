@@ -14,10 +14,7 @@ import {
 import { Screen } from "@/shared/ui/layout/Screen";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
 import { FullScreenModal } from "@/shared/ui/layout/FullScreenModal";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 const quickFilterOptions = [
   { label: "Todos", value: "" },
@@ -509,14 +506,15 @@ const styles = StyleSheet.create({
     paddingRight: spacing.sm
   },
   quickFilterChip: {
-    minHeight: 42,
-    paddingHorizontal: spacing.lg,
-    borderRadius: radius.pill,
+    minHeight: componentTokens.chip.height,
+    paddingHorizontal: componentTokens.chip.paddingHorizontal,
+    borderRadius: componentTokens.chip.radius,
     backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    ...shadows.card
   },
   quickFilterChipActive: {
     backgroundColor: colors.primary,
@@ -531,14 +529,15 @@ const styles = StyleSheet.create({
     color: colors.surface
   },
   toolbarButton: {
-    width: 46,
-    height: 46,
+    width: componentTokens.iconButton.md,
+    height: componentTokens.iconButton.md,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.surface
+    backgroundColor: colors.surface,
+    ...shadows.card
   },
   toolbarButtonActive: {
     backgroundColor: colors.primary,
@@ -567,16 +566,17 @@ const styles = StyleSheet.create({
     ...fontWeights.bold
   },
   headerActionButton: {
-    minHeight: 42,
+    minHeight: componentTokens.chip.height,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    borderRadius: radius.pill,
+    paddingHorizontal: componentTokens.chip.paddingHorizontal,
+    borderRadius: componentTokens.chip.radius,
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: colors.surface
+    backgroundColor: colors.surface,
+    ...shadows.card
   },
   headerActionLabel: {
     color: colors.text,
@@ -586,7 +586,13 @@ const styles = StyleSheet.create({
   sortCard: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.sm
+    gap: spacing.sm,
+    padding: componentTokens.card.compactPadding,
+    borderRadius: componentTokens.card.compactRadius,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.card
   },
   sortLabel: {
     color: colors.textMuted,
@@ -620,6 +626,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
+    ...shadows.dropdown,
     overflow: "hidden"
   },
   sortDropdownItem: {
@@ -644,12 +651,13 @@ const styles = StyleSheet.create({
     color: colors.primaryStrong
   },
   paginationCard: {
-    padding: spacing.md,
+    padding: componentTokens.card.compactPadding,
     borderRadius: radius.lg,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.card
   },
   paginationSummary: {
     gap: spacing.xs

@@ -1,9 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, shadows, spacing, typography } from "@/shared/theme";
 
 type EmptyStateProps = {
   title: string;
@@ -24,12 +21,13 @@ export function EmptyState({
 
 const styles = StyleSheet.create({
   container: {
-    padding: spacing.xl,
-    borderRadius: radius.xl,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.sm
+    gap: spacing.sm,
+    ...shadows.card
   },
   title: {
     color: colors.text,

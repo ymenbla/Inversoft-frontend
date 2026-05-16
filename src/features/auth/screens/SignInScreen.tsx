@@ -1,10 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { useSignInForm } from "@/features/auth/hooks/useSignInForm";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { colors, radius, spacing, typography } from "@/shared/theme";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { TextField } from "@/shared/ui/inputs/TextField";
 import { Screen } from "@/shared/ui/layout/Screen";

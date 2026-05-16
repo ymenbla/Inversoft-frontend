@@ -1,10 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { colombiaCities, colombiaDepartments } from "@/shared/data/colombiaLocationsNormalized";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, spacing, typography } from "@/shared/theme";
 import { FilterFormCard } from "@/shared/ui/filters/FilterFormCard";
 import { AutocompleteField } from "@/shared/ui/inputs/AutocompleteField";
 import { TextField } from "@/shared/ui/inputs/TextField";
@@ -211,7 +208,7 @@ const styles = StyleSheet.create({
   radioLabel: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -247,22 +244,27 @@ const styles = StyleSheet.create({
   radioOptionLabel: {
     color: colors.text,
     fontSize: typography.body,
-    fontWeight: "600"
+    ...fontWeights.semibold
   },
   clearFilterButton: {
     alignSelf: "flex-start",
-    paddingVertical: spacing.xs
+    minHeight: componentTokens.chip.height,
+    paddingHorizontal: spacing.md,
+    borderRadius: componentTokens.chip.radius,
+    justifyContent: "center",
+    backgroundColor: colors.surfaceMuted
   },
   clearFilterLabel: {
     color: colors.primary,
     fontSize: typography.caption,
-    fontWeight: "700"
+    ...fontWeights.bold
   },
   cityFieldBlock: {
     gap: spacing.xs
   },
   helperText: {
     color: colors.textMuted,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   }
 });

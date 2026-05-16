@@ -1,9 +1,6 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type PrimaryButtonProps = {
   label: string;
@@ -42,12 +39,13 @@ export function PrimaryButton({
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 54,
+    minHeight: componentTokens.button.primaryHeight,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: radius.lg,
     backgroundColor: colors.primary,
-    paddingHorizontal: spacing.lg
+    paddingHorizontal: spacing.lg,
+    ...shadows.card
   },
   buttonDisabled: {
     opacity: 0.55

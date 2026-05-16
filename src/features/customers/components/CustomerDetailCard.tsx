@@ -3,10 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { LocationMapPreview } from "@/features/customers/components/LocationMapPreview";
 import { CustomerDetail } from "@/features/customers/types/customer.types";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
@@ -197,12 +194,13 @@ const styles = StyleSheet.create({
     ...fontWeights.extrabold
   },
   heroCard: {
-    padding: spacing.lg,
-    borderRadius: radius.xl,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.raisedCard
   },
   heroRow: {
     flexDirection: "row",
@@ -248,18 +246,24 @@ const styles = StyleSheet.create({
     gap: spacing.sm
   },
   statusChip: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.pill
+    minHeight: componentTokens.badge.minHeight,
+    paddingHorizontal: componentTokens.badge.paddingHorizontal,
+    paddingVertical: spacing.xs,
+    borderRadius: componentTokens.badge.radius,
+    borderWidth: 1,
+    borderColor: colors.border,
+    justifyContent: "center"
   },
   statusChipSuccess: {
-    backgroundColor: "#E7F8F0"
+    backgroundColor: "#E7F8F0",
+    borderColor: "#BEE7D3"
   },
   statusChipMuted: {
     backgroundColor: colors.surfaceMuted
   },
   statusChipAlert: {
-    backgroundColor: "#FFF1E6"
+    backgroundColor: "#FFF1E6",
+    borderColor: "#FFD3A8"
   },
   statusChipText: {
     color: colors.textMuted,
@@ -284,12 +288,13 @@ const styles = StyleSheet.create({
     gap: spacing.md
   },
   detailCard: {
-    padding: spacing.md,
-    borderRadius: radius.lg,
+    padding: componentTokens.card.compactPadding,
+    borderRadius: componentTokens.card.compactRadius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.xs
+    gap: spacing.xs,
+    ...shadows.card
   },
   detailHeader: {
     flexDirection: "row",

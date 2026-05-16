@@ -1,10 +1,7 @@
 import MapView, { Marker, MapPressEvent, PROVIDER_GOOGLE, Region } from "react-native-maps";
 import { StyleSheet, Text, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { colors, radius, spacing, typography } from "@/shared/theme";
 
 type LocationMapPreviewProps = {
   latitude: string;

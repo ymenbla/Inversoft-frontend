@@ -1,10 +1,7 @@
 import { useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, TextInputProps, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type AutocompleteOption = {
   key: string;
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.text,
     fontSize: typography.caption,
-    fontWeight: "700",
+    ...fontWeights.bold,
     textTransform: "uppercase",
     letterSpacing: 0.6
   },
@@ -130,29 +127,29 @@ const styles = StyleSheet.create({
     zIndex: 2
   },
   input: {
-    minHeight: 52,
+    minHeight: componentTokens.input.height,
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
     paddingHorizontal: spacing.lg,
-    color: colors.text
+    color: colors.text,
+    ...fontWeights.medium
   },
   inputError: {
     borderColor: colors.danger
   },
   suggestionsCard: {
     position: "absolute",
-    top: 56,
+    top: componentTokens.input.dropdownOffset,
     left: 0,
     right: 0,
     zIndex: 20,
-    elevation: 8,
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.surface,
-    boxShadow: "0px 8px 18px rgba(11, 20, 37, 0.08)",
+    ...shadows.dropdown,
     overflow: "hidden"
   },
   suggestionsScroll: {
@@ -167,10 +164,12 @@ const styles = StyleSheet.create({
   },
   suggestionText: {
     color: colors.text,
-    fontSize: typography.body
+    fontSize: typography.body,
+    ...fontWeights.medium
   },
   error: {
     color: colors.danger,
-    fontSize: typography.caption
+    fontSize: typography.caption,
+    ...fontWeights.regular
   }
 });

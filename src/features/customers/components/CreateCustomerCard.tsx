@@ -9,10 +9,7 @@ import {
   CustomerDetail
 } from "@/features/customers/types/customer.types";
 import { colombiaCities, colombiaDepartments } from "@/shared/data/colombiaLocationsNormalized";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, fontWeights, radius, spacing, typography } from "@/shared/theme";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { AutocompleteField } from "@/shared/ui/inputs/AutocompleteField";

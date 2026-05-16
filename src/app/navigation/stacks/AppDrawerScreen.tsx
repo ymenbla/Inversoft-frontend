@@ -12,9 +12,7 @@ import { PartnersScreen } from "@/features/partners/screens/PartnersScreen";
 import { RoutesScreen } from "@/features/routes/screens/RoutesScreen";
 import { RolesScreen } from "@/features/users/screens/RolesScreen";
 import { UsersScreen } from "@/features/users/screens/UsersScreen";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
+import { colors, radius, spacing } from "@/shared/theme";
 import { DrawerContent } from "@/shared/ui/navigation/DrawerContent";
 
 const Drawer = createDrawerNavigator<AppDrawerParamList>();

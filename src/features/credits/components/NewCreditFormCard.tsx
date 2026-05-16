@@ -4,10 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { CustomerListItem } from "@/features/customers/types/customer.types";
 import { useCreateCreditForm } from "@/features/credits/hooks/useCreateCreditForm";
 import { RouteListItem } from "@/features/routes/types/route.types";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { typography } from "@/shared/theme/typography";
+import { colors, radius, spacing, typography } from "@/shared/theme";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { TextField } from "@/shared/ui/inputs/TextField";
 

@@ -4,10 +4,7 @@ import { findMockCreditById } from "@/features/credits/mock/mockCredits";
 import { CreditListItem } from "@/features/credits/types/credit.types";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type CreditDetailContentProps = {
   creditId: string | null;
@@ -162,7 +159,7 @@ export function CreditDetailContent({
           <Text style={styles.detailValue}>{formatStatus(resolvedCredit.status)}</Text>
         </View>
 
-        <View style={styles.detailRow}>
+        <View style={[styles.detailRow, styles.detailRowLast]}>
           <Text style={styles.detailLabel}>Proximo pago</Text>
           <Text style={styles.detailValue}>
             {new Date(resolvedCredit.nextDueDate).toLocaleDateString("es-CO", {
@@ -204,12 +201,13 @@ const styles = StyleSheet.create({
     ...fontWeights.semibold
   },
   heroCard: {
-    padding: spacing.lg,
-    borderRadius: radius.xl,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.raisedCard
   },
   heroHeader: {
     flexDirection: "row",
@@ -223,9 +221,10 @@ const styles = StyleSheet.create({
     ...fontWeights.extrabold
   },
   statusBadge: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radius.pill,
+    minHeight: componentTokens.badge.minHeight,
+    paddingHorizontal: componentTokens.badge.paddingHorizontal,
+    paddingVertical: spacing.xs,
+    borderRadius: componentTokens.badge.radius,
     borderWidth: 1
   },
   statusActive: {
@@ -263,8 +262,8 @@ const styles = StyleSheet.create({
   metricCard: {
     flex: 1,
     minWidth: 140,
-    padding: spacing.md,
-    borderRadius: radius.lg,
+    padding: componentTokens.card.compactPadding,
+    borderRadius: componentTokens.card.compactRadius,
     backgroundColor: colors.background,
     borderWidth: 1,
     borderColor: colors.border,
@@ -290,12 +289,13 @@ const styles = StyleSheet.create({
     ...fontWeights.semibold
   },
   detailCard: {
-    padding: spacing.lg,
-    borderRadius: radius.xl,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.radius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.card
   },
   sectionTitle: {
     color: colors.text,
@@ -303,7 +303,10 @@ const styles = StyleSheet.create({
     ...fontWeights.extrabold
   },
   detailRow: {
-    gap: spacing.xs
+    gap: spacing.xs,
+    paddingBottom: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border
   },
   detailLabel: {
     color: colors.textMuted,
@@ -319,5 +322,9 @@ const styles = StyleSheet.create({
   },
   actionsBlock: {
     gap: spacing.md
+  },
+  detailRowLast: {
+    paddingBottom: 0,
+    borderBottomWidth: 0
   }
 });

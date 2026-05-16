@@ -2,10 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { CreditListItem } from "@/features/credits/types/credit.types";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, radius, shadows, spacing, typography } from "@/shared/theme";
 
 type CreditListItemCardProps = {
   credit: CreditListItem;
@@ -184,18 +181,19 @@ export function CreditListItemCard({
 
 const styles = StyleSheet.create({
   card: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-    borderRadius: radius.lg,
+    paddingHorizontal: componentTokens.card.defaultPadding,
+    paddingVertical: componentTokens.card.compactPadding,
+    borderRadius: componentTokens.card.compactRadius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
     gap: spacing.sm,
-    boxShadow: "0px 12px 28px rgba(11, 20, 37, 0.06)"
+    ...shadows.card
   },
   cardSelected: {
     borderColor: colors.primary,
-    backgroundColor: "#F7FAFF"
+    backgroundColor: "#F7FAFF",
+    ...shadows.raisedCard
   },
   header: {
     flexDirection: "row",
@@ -235,9 +233,10 @@ const styles = StyleSheet.create({
     ...fontWeights.semibold
   },
   badge: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: 6,
-    borderRadius: radius.pill,
+    minHeight: componentTokens.badge.minHeight,
+    paddingHorizontal: componentTokens.badge.paddingHorizontal,
+    paddingVertical: spacing.xs,
+    borderRadius: componentTokens.badge.radius,
     borderWidth: 1
   },
   statusActive: {
@@ -336,7 +335,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xs
   },
   actionButton: {
-    minHeight: 34,
+    minHeight: componentTokens.badge.minHeight,
     paddingHorizontal: spacing.md,
     borderRadius: radius.pill,
     borderWidth: 1,

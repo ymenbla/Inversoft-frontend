@@ -1,9 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, shadows, spacing, typography } from "@/shared/theme";
 
 type MetricCardProps = {
   label: string;
@@ -32,12 +29,13 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     minWidth: 145,
-    padding: spacing.lg,
-    borderRadius: radius.lg,
+    padding: componentTokens.card.defaultPadding,
+    borderRadius: componentTokens.card.compactRadius,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.sm
+    gap: spacing.sm,
+    ...shadows.card
   },
   badge: {
     width: 36,

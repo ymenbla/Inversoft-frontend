@@ -5,10 +5,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { drawerItemConfigs } from "@/app/navigation/accessConfig";
 import { useSession } from "@/features/auth/context/SessionContext";
 import { hasAccess } from "@/features/auth/utils/access";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, fontWeights, radius, spacing, typography } from "@/shared/theme";
 
 type DrawerContentProps = DrawerContentComponentProps & {
   isCollapsed: boolean;

@@ -9,10 +9,7 @@ import { useCreateCreditForm } from "@/features/credits/hooks/useCreateCreditFor
 import { CreateCreditPayload, CreditListItem } from "@/features/credits/types/credit.types";
 import { useRoutesQuery } from "@/features/routes/hooks/useRoutesQuery";
 import { RouteListItem } from "@/features/routes/types/route.types";
-import { colors } from "@/shared/theme/colors";
-import { radius } from "@/shared/theme/radius";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, fontWeights, radius, spacing, typography } from "@/shared/theme";
 import { PrimaryButton } from "@/shared/ui/buttons/PrimaryButton";
 import { SecondaryButton } from "@/shared/ui/buttons/SecondaryButton";
 import { TextField } from "@/shared/ui/inputs/TextField";

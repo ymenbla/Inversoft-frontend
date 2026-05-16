@@ -29,9 +29,7 @@ import { MobileFullScreenModal } from "@/shared/ui/layout/MobileFullScreenModal"
 import { Screen } from "@/shared/ui/layout/Screen";
 import { EmptyState } from "@/shared/ui/feedback/EmptyState";
 import { LoadingBlock } from "@/shared/ui/feedback/LoadingBlock";
-import { colors } from "@/shared/theme/colors";
-import { spacing } from "@/shared/theme/spacing";
-import { fontWeights, typography } from "@/shared/theme/typography";
+import { colors, componentTokens, fontWeights, shadows, spacing, typography } from "@/shared/theme";
 
 const USE_MOCK_CUSTOMERS = true;
 const MOBILE_BREAKPOINT = 768;
@@ -724,14 +722,15 @@ const styles = StyleSheet.create({
     paddingRight: spacing.sm
   },
   quickFilterChip: {
-    minHeight: 42,
-    paddingHorizontal: spacing.lg,
-    borderRadius: 999,
+    minHeight: componentTokens.chip.height,
+    paddingHorizontal: componentTokens.chip.paddingHorizontal,
+    borderRadius: componentTokens.chip.radius,
     backgroundColor: colors.surfaceMuted,
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    ...shadows.card
   },
   quickFilterChipActive: {
     backgroundColor: colors.primary,
@@ -746,15 +745,16 @@ const styles = StyleSheet.create({
     color: colors.surface
   },
   toolbarButton: {
-    width: 46,
-    height: 46,
+    width: componentTokens.iconButton.md,
+    height: componentTokens.iconButton.md,
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
     borderRadius: 999,
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: colors.surface
+    backgroundColor: colors.surface,
+    ...shadows.card
   },
   toolbarButtonActive: {
     backgroundColor: colors.primary,
@@ -782,16 +782,17 @@ const styles = StyleSheet.create({
     ...fontWeights.bold
   },
   headerActionButton: {
-    minHeight: 42,
+    minHeight: componentTokens.chip.height,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    borderRadius: 999,
+    paddingHorizontal: componentTokens.chip.paddingHorizontal,
+    borderRadius: componentTokens.chip.radius,
     borderWidth: 1,
     borderColor: colors.border,
-    backgroundColor: colors.surface
+    backgroundColor: colors.surface,
+    ...shadows.card
   },
   headerActionButtonActive: {
     backgroundColor: colors.primary,
@@ -811,12 +812,13 @@ const styles = StyleSheet.create({
     ...fontWeights.bold
   },
   paginationCard: {
-    padding: spacing.md,
+    padding: componentTokens.card.compactPadding,
     borderRadius: 18,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.md
+    gap: spacing.md,
+    ...shadows.card
   },
   paginationSummary: {
     gap: spacing.xs
