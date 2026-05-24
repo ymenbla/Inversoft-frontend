@@ -132,7 +132,7 @@ export function DrawerContent({
       <View style={[styles.topSection, isCollapsed ? styles.topSectionCollapsed : null]}>
         <View style={[styles.brandCard, isCollapsed ? styles.brandCardCollapsed : null]}>
           <View style={styles.brandBadge}>
-            <Ionicons color={colors.primaryStrong} name="person" size={22} />
+            <Ionicons color={colors.primaryStrong} name="person" size={20} />
           </View>
           {!isCollapsed ? (
             <View style={styles.brandTextBlock}>
@@ -140,7 +140,7 @@ export function DrawerContent({
                 {profile?.companyCode ? `Tenant ${profile.companyCode}` : "Tenant activo"}
               </Text>
               <Text style={styles.userName}>{profile?.displayName ?? "Usuario"}</Text>
-              <Text style={styles.role}>{profile?.roleLabel ?? "Sin rol"}</Text>
+              <Text style={styles.roleText}>{profile?.roleLabel ?? "Sin rol"}</Text>
             </View>
           ) : null}
         </View>
@@ -218,24 +218,19 @@ const styles = StyleSheet.create({
   brandCard: {
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: spacing.md,
+    gap: spacing.lg,
     paddingVertical: spacing.sm
   },
   brandCardCollapsed: {
     justifyContent: "center"
   },
   brandBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: radius.lg,
+    width: 42,
+    height: 42,
+    borderRadius: radius.pill,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.primarySoft
-  },
-  brandBadgeText: {
-    color: colors.primaryStrong,
-    fontSize: typography.heading,
-    ...fontWeights.extrabold
   },
   brandTextBlock: {
     flex: 1,
@@ -244,18 +239,18 @@ const styles = StyleSheet.create({
   },
   companyLabel: {
     color: colors.textMuted,
-    fontSize: typography.caption,
+    fontSize: typography.overline,
     ...fontWeights.bold,
     textTransform: "uppercase",
-    letterSpacing: 0.8
+    letterSpacing: 0.9
   },
   userName: {
     color: colors.text,
     fontSize: typography.heading,
-    lineHeight: 24,
+    lineHeight: 23,
     ...fontWeights.extrabold
   },
-  role: {
+  roleText: {
     color: colors.textMuted,
     fontSize: typography.body,
     ...fontWeights.regular

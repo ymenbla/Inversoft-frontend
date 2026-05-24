@@ -1,6 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useState } from "react";
-import { Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
+import { Platform, Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { MainTabsScreen } from "@/app/navigation/stacks/MainTabsScreen";
@@ -22,6 +22,22 @@ const Drawer = createDrawerNavigator<AppDrawerParamList>();
 const DESKTOP_BREAKPOINT = 1024;
 const DRAWER_EXPANDED_WIDTH = 296;
 const DRAWER_COLLAPSED_WIDTH = 92;
+const webDrawerTransitionStyle =
+  Platform.OS === "web"
+    ? ({
+        transitionProperty: "width",
+        transitionDuration: "220ms",
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
+      } as unknown as Record<string, unknown>)
+    : undefined;
+const webCollapseButtonTransitionStyle =
+  Platform.OS === "web"
+    ? ({
+        transitionProperty: "left, transform, opacity",
+        transitionDuration: "220ms",
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)"
+      } as unknown as Record<string, unknown>)
+    : undefined;
 
 export function AppDrawerScreen(): React.JSX.Element {
   const { width } = useWindowDimensions();
@@ -51,7 +67,8 @@ export function AppDrawerScreen(): React.JSX.Element {
             backgroundColor: colors.surface,
             width: drawerWidth,
             borderRightWidth: 1,
-            borderRightColor: colors.border
+            borderRightColor: colors.border,
+            ...webDrawerTransitionStyle
           },
           overlayColor: isDesktopViewport ? "transparent" : colors.overlay,
           sceneStyle: {
@@ -78,7 +95,8 @@ export function AppDrawerScreen(): React.JSX.Element {
           style={[
             styles.collapseButton,
             {
-              left: drawerWidth - 18
+              left: drawerWidth - 18,
+              ...webCollapseButtonTransitionStyle
             }
           ]}
         >
