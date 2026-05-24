@@ -10,6 +10,9 @@ import { CreditsOverviewScreen } from "@/features/credits/screens/CreditsOvervie
 import { NotificationsScreen } from "@/features/notifications/screens/NotificationsScreen";
 import { PartnersScreen } from "@/features/partners/screens/PartnersScreen";
 import { RoutesScreen } from "@/features/routes/screens/RoutesScreen";
+import { InterestRatesScreen } from "@/features/settings/screens/InterestRatesScreen";
+import { TagsScreen } from "@/features/settings/screens/TagsScreen";
+import { CustomersScreen } from "@/features/customers/screens/CustomersScreen";
 import { RolesScreen } from "@/features/users/screens/RolesScreen";
 import { UsersScreen } from "@/features/users/screens/UsersScreen";
 import { colors, radius, spacing } from "@/shared/theme";
@@ -54,11 +57,14 @@ export function AppDrawerScreen(): React.JSX.Element {
       >
         <Drawer.Screen name="MainTabs" component={MainTabsScreen} />
         <Drawer.Screen name="Routes" component={RoutesScreen} />
+        <Drawer.Screen name="Customers" component={CustomersScreen} />
         <Drawer.Screen name="Credits" component={CreditsOverviewScreen} />
         <Drawer.Screen name="Collaborators" component={CollaboratorsScreen} />
         <Drawer.Screen name="Partners" component={PartnersScreen} />
         <Drawer.Screen name="Users" component={UsersScreen} />
         <Drawer.Screen name="Roles" component={RolesScreen} />
+        <Drawer.Screen name="Tags" component={TagsScreen} />
+        <Drawer.Screen name="InterestRates" component={InterestRatesScreen} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       </Drawer.Navigator>
 

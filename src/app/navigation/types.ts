@@ -14,11 +14,14 @@ export type AuthStackParamList = {
 export type AppDrawerParamList = {
   MainTabs: undefined;
   Routes: undefined;
+  Customers: undefined;
   Credits: undefined;
   Collaborators: undefined;
   Partners: undefined;
   Users: undefined;
   Roles: undefined;
+  Tags: undefined;
+  InterestRates: undefined;
   Notifications: undefined;
 };
 

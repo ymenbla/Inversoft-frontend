@@ -14,15 +14,20 @@ type DrawerContentProps = DrawerContentComponentProps & {
 type DrawerIconName = keyof typeof Ionicons.glyphMap;
 
 const drawerIcons: Record<string, DrawerIconName> = {
-  MainTabs: "grid",
+  MainTabs: "home",
   Routes: "map",
+  Customers: "people",
   Credits: "wallet",
   Collaborators: "people",
   Partners: "briefcase",
   Users: "person-circle",
   Roles: "shield-checkmark",
+  Tags: "pricetags",
+  InterestRates: "trending-up",
   Notifications: "notifications"
 };
+
+const drawerGroupOrder = ["Dashboard", "Operaciones", "Personal", "Administracion"] as const;
 
 function SidebarItem({
   label,
@@ -84,6 +89,12 @@ export function DrawerContent({
     hasAccess(profile, item.access)
   );
   const activeRouteName = state.routeNames[state.index];
+  const groupedItems = drawerGroupOrder
+    .map((group) => ({
+      group,
+      items: visibleItems.filter((item) => item.group === group)
+    }))
+    .filter((entry) => entry.items.length > 0);
 
   return (
     <DrawerContentScrollView
@@ -113,15 +124,22 @@ export function DrawerContent({
       <View style={styles.divider} />
 
       <View style={styles.menu}>
-        {visibleItems.map((item) => (
-          <SidebarItem
-            key={item.routeName}
-            active={activeRouteName === item.routeName}
-            collapsed={isCollapsed}
-            iconName={drawerIcons[item.routeName] ?? "ellipse"}
-            label={item.label}
-            onPress={() => navigation.navigate(item.routeName)}
-          />
+        {groupedItems.map(({ group, items }) => (
+          <View key={group} style={styles.groupBlock}>
+            {!isCollapsed ? <Text style={styles.groupTitle}>{group}</Text> : null}
+            <View style={styles.groupItems}>
+              {items.map((item) => (
+                <SidebarItem
+                  key={item.routeName}
+                  active={activeRouteName === item.routeName}
+                  collapsed={isCollapsed}
+                  iconName={drawerIcons[item.routeName] ?? "ellipse"}
+                  label={item.label}
+                  onPress={() => navigation.navigate(item.routeName)}
+                />
+              ))}
+            </View>
+          </View>
         ))}
       </View>
 
@@ -205,6 +223,20 @@ const styles = StyleSheet.create({
   },
   menu: {
     paddingTop: spacing.lg,
+    gap: spacing.lg
+  },
+  groupBlock: {
+    gap: spacing.sm
+  },
+  groupTitle: {
+    color: colors.textMuted,
+    fontSize: typography.caption,
+    ...fontWeights.bold,
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
+    paddingHorizontal: spacing.sm
+  },
+  groupItems: {
     gap: spacing.sm
   },
   item: {
