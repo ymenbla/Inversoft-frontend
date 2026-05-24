@@ -9,6 +9,7 @@ import { colors, fontWeights, radius, spacing, typography } from "@/shared/theme
 
 type DrawerContentProps = DrawerContentComponentProps & {
   isCollapsed: boolean;
+  isMobileDrawer: boolean;
 };
 
 type DrawerIconName = keyof typeof Ionicons.glyphMap;
@@ -47,7 +48,7 @@ function SidebarItem({
   const iconColor = danger
     ? colors.danger
     : active
-      ? colors.surface
+      ? colors.primaryStrong
       : colors.textMuted;
 
   return (
@@ -62,6 +63,7 @@ function SidebarItem({
         collapsed ? styles.itemCollapsed : null
       ]}
     >
+      {active && !collapsed ? <View style={styles.itemActiveBar} /> : null}
       <Ionicons color={iconColor} name={iconName} size={20} />
       {!collapsed ? (
         <Text
@@ -79,10 +81,20 @@ function SidebarItem({
   );
 }
 
+function GroupHeader({ label }: { label: string }): React.JSX.Element {
+  return (
+    <View style={styles.groupHeader}>
+      <Text style={styles.groupTitle}>{label}</Text>
+      <View style={styles.groupTitleLine} />
+    </View>
+  );
+}
+
 export function DrawerContent({
   navigation,
   state,
-  isCollapsed
+  isCollapsed,
+  isMobileDrawer
 }: DrawerContentProps): React.JSX.Element {
   const { profile, signOut } = useSession();
   const visibleItems = drawerItemConfigs.filter((item) =>
@@ -104,6 +116,19 @@ export function DrawerContent({
       ]}
       scrollEnabled
     >
+      {isMobileDrawer ? (
+        <View style={styles.mobileHeader}>
+          <View style={styles.mobileHeaderSpacer} />
+          <Pressable
+            accessibilityLabel="Cerrar menu"
+            onPress={() => navigation.closeDrawer()}
+            style={styles.mobileCloseButton}
+          >
+            <Ionicons color={colors.text} name="close" size={22} />
+          </Pressable>
+        </View>
+      ) : null}
+
       <View style={[styles.topSection, isCollapsed ? styles.topSectionCollapsed : null]}>
         <View style={[styles.brandCard, isCollapsed ? styles.brandCardCollapsed : null]}>
           <View style={styles.brandBadge}>
@@ -126,7 +151,7 @@ export function DrawerContent({
       <View style={styles.menu}>
         {groupedItems.map(({ group, items }) => (
           <View key={group} style={styles.groupBlock}>
-            {!isCollapsed ? <Text style={styles.groupTitle}>{group}</Text> : null}
+            {!isCollapsed ? <GroupHeader label={group} /> : null}
             <View style={styles.groupItems}>
               {items.map((item) => (
                 <SidebarItem
@@ -170,12 +195,29 @@ const styles = StyleSheet.create({
   topSection: {
     gap: spacing.md
   },
+  mobileHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: spacing.xs
+  },
+  mobileHeaderSpacer: {
+    width: 44,
+    height: 44
+  },
+  mobileCloseButton: {
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent"
+  },
   topSectionCollapsed: {
     alignItems: "center"
   },
   brandCard: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: spacing.md,
     paddingVertical: spacing.sm
   },
@@ -197,7 +239,8 @@ const styles = StyleSheet.create({
   },
   brandTextBlock: {
     flex: 1,
-    gap: spacing.xs
+    gap: 2,
+    minWidth: 0
   },
   companyLabel: {
     color: colors.textMuted,
@@ -209,6 +252,7 @@ const styles = StyleSheet.create({
   userName: {
     color: colors.text,
     fontSize: typography.heading,
+    lineHeight: 24,
     ...fontWeights.extrabold
   },
   role: {
@@ -226,33 +270,56 @@ const styles = StyleSheet.create({
     gap: spacing.lg
   },
   groupBlock: {
-    gap: spacing.sm
+    gap: spacing.xs
+  },
+  groupHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+    paddingHorizontal: spacing.xs
   },
   groupTitle: {
     color: colors.textMuted,
-    fontSize: typography.caption,
+    fontSize: typography.overline,
     ...fontWeights.bold,
     textTransform: "uppercase",
-    letterSpacing: 0.8,
-    paddingHorizontal: spacing.sm
+    letterSpacing: 1
+  },
+  groupTitleLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: colors.surfaceMuted
   },
   groupItems: {
-    gap: spacing.sm
+    gap: spacing.xs
   },
   item: {
-    minHeight: 52,
+    minHeight: 46,
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.md,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.md,
-    backgroundColor: colors.surface
+    backgroundColor: colors.surface,
+    position: "relative",
+    overflow: "hidden"
   },
   itemCollapsed: {
     justifyContent: "center",
     paddingHorizontal: spacing.sm
   },
   itemActive: {
+    backgroundColor: colors.primarySoft,
+    marginHorizontal: spacing.xs
+  },
+  itemActiveBar: {
+    position: "absolute",
+    left: 0,
+    top: 8,
+    bottom: 8,
+    width: 4,
+    borderTopRightRadius: radius.sm,
+    borderBottomRightRadius: radius.sm,
     backgroundColor: colors.primary
   },
   itemDanger: {
@@ -264,11 +331,11 @@ const styles = StyleSheet.create({
   itemLabel: {
     flex: 1,
     color: colors.text,
-    fontSize: typography.body,
+    fontSize: 14,
     ...fontWeights.bold
   },
   itemLabelActive: {
-    color: colors.surface
+    color: colors.primaryStrong
   },
   itemLabelDanger: {
     color: colors.danger

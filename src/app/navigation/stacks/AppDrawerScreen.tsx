@@ -31,14 +31,18 @@ export function AppDrawerScreen(): React.JSX.Element {
     ? isCollapsed
       ? DRAWER_COLLAPSED_WIDTH
       : DRAWER_EXPANDED_WIDTH
-    : DRAWER_EXPANDED_WIDTH;
+    : width;
 
   return (
     <View style={styles.root}>
       <Drawer.Navigator
         id="app-drawer"
         drawerContent={(props) => (
-          <DrawerContent {...props} isCollapsed={isDesktopViewport ? isCollapsed : false} />
+          <DrawerContent
+            {...props}
+            isCollapsed={isDesktopViewport ? isCollapsed : false}
+            isMobileDrawer={!isDesktopViewport}
+          />
         )}
         screenOptions={{
           headerShown: false,
@@ -49,7 +53,7 @@ export function AppDrawerScreen(): React.JSX.Element {
             borderRightWidth: 1,
             borderRightColor: colors.border
           },
-          overlayColor: "transparent",
+          overlayColor: isDesktopViewport ? "transparent" : colors.overlay,
           sceneStyle: {
             backgroundColor: colors.background
           }
