@@ -4,7 +4,7 @@ import { RoleAccess } from "@/features/auth/utils/access";
 export type DrawerItemConfig = {
   routeName: keyof AppDrawerParamList;
   label: string;
-  group: "Dashboard" | "Operaciones" | "Personal" | "Administracion";
+  group: "Dashboard" | "Operaciones" | "Personal" | "Parametros" | "Configuracion";
   access: RoleAccess;
 };
 
@@ -52,27 +52,39 @@ export const drawerItemConfigs: DrawerItemConfig[] = [
     access: "admin"
   },
   {
+    routeName: "InterestRates",
+    label: "Tasa de interes",
+    group: "Parametros",
+    access: "admin"
+  },
+  {
+    routeName: "PaymentMethods",
+    label: "Metodos de pagos",
+    group: "Parametros",
+    access: "admin"
+  },
+  {
+    routeName: "Periodicities",
+    label: "Periodicidad",
+    group: "Parametros",
+    access: "admin"
+  },
+  {
+    routeName: "Tags",
+    label: "Etiquetas",
+    group: "Parametros",
+    access: "admin"
+  },
+  {
     routeName: "Users",
     label: "Usuarios",
-    group: "Administracion",
+    group: "Configuracion",
     access: "admin"
   },
   {
     routeName: "Roles",
     label: "Roles",
-    group: "Administracion",
-    access: "admin"
-  },
-  {
-    routeName: "Tags",
-    label: "Tags",
-    group: "Administracion",
-    access: "admin"
-  },
-  {
-    routeName: "InterestRates",
-    label: "Tasas de Interes",
-    group: "Administracion",
+    group: "Configuracion",
     access: "admin"
   }
 ];

@@ -21,6 +21,8 @@ const drawerIcons: Record<string, DrawerIconName> = {
   Credits: "wallet",
   Collaborators: "people",
   Partners: "briefcase",
+  PaymentMethods: "card",
+  Periodicities: "repeat",
   Users: "person-circle",
   Roles: "shield-checkmark",
   Tags: "pricetags",
@@ -28,7 +30,13 @@ const drawerIcons: Record<string, DrawerIconName> = {
   Notifications: "notifications"
 };
 
-const drawerGroupOrder = ["Dashboard", "Operaciones", "Personal", "Administracion"] as const;
+const drawerGroupOrder = [
+  "Dashboard",
+  "Operaciones",
+  "Personal",
+  "Parametros",
+  "Configuracion"
+] as const;
 
 function SidebarItem({
   label,

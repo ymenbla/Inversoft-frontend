@@ -18,6 +18,8 @@ export type AppDrawerParamList = {
   Credits: undefined;
   Collaborators: undefined;
   Partners: undefined;
+  PaymentMethods: undefined;
+  Periodicities: undefined;
   Users: undefined;
   Roles: undefined;
   Tags: undefined;

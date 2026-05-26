@@ -1,5 +1,5 @@
 import { PropsWithChildren, ReactNode } from "react";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { DrawerActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Pressable,
@@ -13,7 +13,8 @@ import {
   View
 } from "react-native";
 
-import { colors, fontWeights, radius, spacing, typography } from "@/shared/theme";
+import { useDrawerLayout } from "@/app/navigation/DrawerLayoutContext";
+import { colors, fontWeights, spacing, typography } from "@/shared/theme";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -37,11 +38,21 @@ export function Screen({
 }: ScreenProps): React.JSX.Element {
   const navigation = useNavigation();
   const drawerNavigation = navigation.getParent("app-drawer");
+  const drawerLayout = useDrawerLayout();
   const { width } = useWindowDimensions();
   const isMobileViewport = width < MOBILE_BREAKPOINT;
-  const shouldShowMobileAppHeader = showAppHeader && isMobileViewport;
+  const shouldShowAppHeader = showAppHeader;
+  const isDesktopDrawerExpanded =
+    drawerLayout?.isDesktopViewport && !drawerLayout.isDrawerCollapsed;
+  const currentRootRouteName = useNavigationState((state) => state.routes[state.index]?.name);
+  const isNotificationsActive = currentRootRouteName === "Notifications";
 
   const handleOpenDrawer = () => {
+    if (drawerLayout?.isDesktopViewport) {
+      drawerLayout.toggleDesktopDrawer();
+      return;
+    }
+
     drawerNavigation?.dispatch(DrawerActions.openDrawer());
   };
 
@@ -51,20 +62,36 @@ export function Screen({
 
   const content = (
     <View style={styles.content}>
-      {shouldShowMobileAppHeader ? (
-        <View style={styles.mobileTopBar}>
-          <Pressable onPress={handleOpenDrawer} style={styles.iconButton}>
-            <Ionicons color={colors.text} name="menu" size={22} />
-          </Pressable>
+      {shouldShowAppHeader ? (
+        <View style={styles.appTopBarBlock}>
+          <View style={styles.appTopBar}>
+            <Pressable
+              onPress={handleOpenDrawer}
+              style={styles.iconButton}
+            >
+              <Ionicons
+                color={isDesktopDrawerExpanded ? colors.primary : colors.text}
+                name="menu"
+                size={22}
+              />
+            </Pressable>
 
-          <View style={styles.wordmark}>
-            <Text style={styles.wordmarkPrimary}>Inver</Text>
-            <Text style={styles.wordmarkSecondary}>soft</Text>
+            <View style={styles.wordmarkWrap}>
+              <View style={styles.wordmark}>
+                <Text style={styles.wordmarkPrimary}>Inver</Text>
+                <Text style={styles.wordmarkSecondary}>soft</Text>
+              </View>
+            </View>
+
+            <Pressable onPress={handleOpenNotifications} style={styles.notificationButton}>
+              <Ionicons
+                color={isNotificationsActive ? colors.primary : colors.text}
+                name={isNotificationsActive ? "notifications" : "notifications-outline"}
+                size={20}
+              />
+            </Pressable>
           </View>
-
-          <Pressable onPress={handleOpenNotifications} style={styles.notificationButton}>
-            <Ionicons color={colors.text} name="notifications-outline" size={20} />
-          </Pressable>
+          <View style={styles.appTopBarDivider} />
         </View>
       ) : null}
 
@@ -73,7 +100,7 @@ export function Screen({
           <Text style={[styles.title, titleStyle]}>{title}</Text>
           {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
         </View>
-        {!shouldShowMobileAppHeader ? rightSlot : null}
+        {!isMobileViewport ? rightSlot : null}
       </View>
       {children}
     </View>
@@ -99,7 +126,10 @@ const styles = StyleSheet.create({
     paddingTop: spacing.lg,
     gap: spacing.lg
   },
-  mobileTopBar: {
+  appTopBarBlock: {
+    gap: spacing.md
+  },
+  appTopBar: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -117,11 +147,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  appTopBarDivider: {
+    height: 1,
+    backgroundColor: colors.border,
+    opacity: 0.72
+  },
+  wordmarkWrap: {
+    flex: 1,
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
   wordmark: {
     flexDirection: "row",
     alignItems: "baseline",
-    justifyContent: "center",
-    flex: 1
+    justifyContent: "flex-start"
   },
   wordmarkPrimary: {
     color: colors.text,
