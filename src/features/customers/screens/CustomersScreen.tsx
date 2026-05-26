@@ -729,8 +729,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
-    justifyContent: "center",
-    ...shadows.card
+    justifyContent: "center"
   },
   quickFilterChipActive: {
     backgroundColor: colors.primary,

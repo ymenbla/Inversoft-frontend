@@ -95,7 +95,6 @@ export function CreditsOverviewScreen(): React.JSX.Element {
     <Screen
       title="Creditos"
       subtitle={`${mockCreditsSeed.length} creditos de ejemplo registrados`}
-      titleStyle={styles.screenTitle}
     >
       <View style={styles.toolbar}>
         <ScrollView
@@ -493,9 +492,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: spacing.sm
   },
-  screenTitle: {
-    fontSize: 30
-  },
   quickFiltersScroll: {
     flex: 1
   },
@@ -513,8 +509,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
-    justifyContent: "center",
-    ...shadows.card
+    justifyContent: "center"
   },
   quickFilterChipActive: {
     backgroundColor: colors.primary,
@@ -531,7 +526,7 @@ const styles = StyleSheet.create({
   toolbarButton: {
     width: componentTokens.iconButton.md,
     height: componentTokens.iconButton.md,
-    borderRadius: 16,
+    borderRadius: 999,
     borderWidth: 1,
     borderColor: colors.border,
     alignItems: "center",
